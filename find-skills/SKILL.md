@@ -20,4 +20,4 @@ python scripts/find_skills.py match "<the user's prompt>"
 - Do not run it twice for the same prompt.
 
 In Claude Code the installer can also register hooks so this happens automatically on every prompt,
-and a line `find-skills | ce prompt : N propose(s), M lance(s) | session : X / Y` is shown after each reply.
+and a line `find-skills | this prompt: N suggested, M launched | session: X / Y` (in your system language) is shown after each reply.

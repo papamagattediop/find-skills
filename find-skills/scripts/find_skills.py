@@ -7,7 +7,7 @@ Modes (first arg):
   status    Stop hook                           -> prints the counter line to the user
   match "<prompt>"   plain CLI for any agent without hooks (Codex, Gemini, Cursor...)
 Stdlib only. Never raises inside a hook: a broken helper must not break the session."""
-import json, math, re, sys
+import json, math, os, re, sys
 from pathlib import Path
 
 HOME = Path.home()
@@ -87,10 +87,29 @@ def save(st):
     STATE.write_text(json.dumps(st), encoding="utf-8")
 
 
-def status_line(s):
+MSG = {"en": "find-skills | this prompt: {ps} suggested, {pl} launched | session: {ts} / {tl}",
+       "fr": "find-skills | ce prompt : {ps} proposé(s), {pl} lancé(s) | session : {ts} / {tl}",
+       "es": "find-skills | este prompt: {ps} sugerido(s), {pl} lanzado(s) | sesión: {ts} / {tl}"}
+
+
+def lang():
+    """FIND_SKILLS_LANG, else the OS language; falls back to English."""
+    code = os.environ.get("FIND_SKILLS_LANG", "")
+    if not code and os.name == "nt":
+        try:
+            import ctypes
+            buf = ctypes.create_unicode_buffer(85)
+            ctypes.windll.kernel32.GetUserDefaultLocaleName(buf, 85)
+            code = buf.value
+        except Exception:
+            pass
+    code = (code or os.environ.get("LC_ALL") or os.environ.get("LANG") or "en")[:2].lower()
+    return code if code in MSG else "en"
+
+
+def status_line(s, l=None):
     p, t = s["p"], s["t"]
-    return (f"find-skills | ce prompt : {len(p['s'])} propose(s), {len(p['l'])} lance(s)"
-            f" | session : {t['s']} / {t['l']}")
+    return MSG[l or lang()].format(ps=len(p["s"]), pl=len(p["l"]), ts=t["s"], tl=t["l"])
 
 
 def demo():
@@ -98,7 +117,7 @@ def demo():
     sk.update({f"o{i}": ({f"w{i}"}, set()) for i in range(30)})
     assert match("extract table from pdf", sk) == ["pdf"] and match("zzzz", sk) == []
     s = {"p": {"s": ["a", "b"], "l": ["a"]}, "t": {"s": 5, "l": 2}}
-    assert "2 propose(s), 1 lance(s)" in status_line(s)
+    assert "2 suggested, 1 launched" in status_line(s, "en") and "proposé" in status_line(s, "fr")
 
 
 def main():

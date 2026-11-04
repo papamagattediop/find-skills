@@ -34,10 +34,11 @@ you     ›  create a landing page for my portfolio
 claude  ›  find-skills suggests: design-taste-frontend
            …builds the page using that skill…
 
-find-skills | ce prompt : 1 propose(s), 1 lance(s) | session : 14 / 6
+find-skills | this prompt: 1 suggested, 1 launched | session: 14 / 6
 ```
 
-*Proposed* = skills found for the prompt. *Launched* = skills the agent actually called.
+*Suggested* = skills found for the prompt. *Launched* = skills the agent actually called.
+The line follows your system language (English, French, Spanish); set `FIND_SKILLS_LANG=fr` to force one.
 
 <br>
 

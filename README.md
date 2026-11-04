@@ -37,6 +37,12 @@ claude  ›  find-skills suggests: design-taste-frontend
 find-skills | this prompt: 1 suggested, 1 launched | session: 14 / 6
 ```
 
+<div align="center">
+<img src="docs/demo.svg" alt="Terminal output of find-skills: matched skills and the counter line" width="720">
+</div>
+
+<br>
+
 *Suggested* = skills found for the prompt. *Launched* = skills the agent actually called.
 The line follows your system language (English, French, Spanish); set `FIND_SKILLS_LANG=fr` to force one.
 

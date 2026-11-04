@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="172" viewBox="0 0 820 172" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="15">
+<rect width="820" height="172" rx="12" fill="#0d1117"/><rect width="820" height="38" rx="12" fill="#161b22"/><rect y="26" width="820" height="12" fill="#161b22"/>
+<circle cx="24" cy="19" r="6" fill="#ff5f56"/><circle cx="46" cy="19" r="6" fill="#ffbd2e"/><circle cx="68" cy="19" r="6" fill="#27c93f"/>
+<text x="28" y="62" fill="#8b949e">$ python find_skills.py match &quot;create a landing page for my portfolio&quot;</text><text x="28" y="90" fill="#7ee787">design-taste-frontend, frontend-design-direction, s4h-writing-copy</text><text x="28" y="146" fill="#79c0ff">▸ find-skills | this prompt: 3 suggested, 1 launched | session: 3 / 1</text></svg>
